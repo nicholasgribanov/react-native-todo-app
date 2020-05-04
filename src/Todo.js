@@ -1,10 +1,10 @@
 import React from 'react'
-import {Text, View, StyleSheet, TouchableOpacity} from 'react-native'
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 
-export const Todo = ({todo, onRemove}) => {
+export const Todo = ({ todo, onRemove }) => {
 
     const longPressHandler = () => {
-      onRemove(todo.id);
+        onRemove(todo.id);
     };
 
     return (

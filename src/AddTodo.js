@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
-import {View, StyleSheet, TextInput, Button, Alert} from 'react-native'
+import React, { useState } from 'react'
+import { View, StyleSheet, TextInput, Button, Alert } from 'react-native'
 
-export const AddTodo = ({onSubmit}) => {
+export const AddTodo = ({ onSubmit }) => {
 
     const [value, setValue] = useState('');
 
@@ -24,7 +24,7 @@ export const AddTodo = ({onSubmit}) => {
                 autoCorrect={false}
                 autoCapitalize='none'
             />
-            <Button title="Добавить" onPress={pressHandler}/>
+            <Button title="Добавить" onPress={pressHandler} />
         </View>
     )
 };
