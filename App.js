@@ -26,7 +26,7 @@ export default function App() {
         const todo = todos.find(t => t.id === id)
         Alert.alert(
             "Удаление элемента",
-            `Вы действительно хотите удалить ${todo.title}?`,
+            `Вы действительно хотите удалить "${todo.title}"?`,
             [
                 {
                     text: "Отмена",
