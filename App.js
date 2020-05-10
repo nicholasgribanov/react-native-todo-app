@@ -1,17 +1,35 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, FlatList, Alert } from 'react-native';
+import { StyleSheet, View, Alert } from 'react-native';
+import * as Fonts from 'expo-font'
+import { AppLoading } from 'expo'
+
 import { Navbar } from './src/components/Navbar'
 import { MainScreen } from './src/screens/MainScreen';
 import { TodoScreen } from './src/screens/TodoScreen';
 
+async function loadApplication() {
+    await Fonts.loadAsync({
+        'roboto-regular': require('./assets/fonts/Roboto-Regular.ttf'),
+        'roboto-bold': require('./assets/fonts/Roboto-Bold.ttf')
+    })
+}
 
 export default function App() {
+    const [isReady, setIsReady] = useState(false);
     const [todoId, setTodoId] = useState(null);
     const [todos, setTodos] = useState([
-        //{ id: '1', title: 'Выучить React Native' },
-        //{ id: '2', title: 'Погладить кота' },
-        //{ id: '3', title: 'Попить пиво за водокачкой' }
+        { id: '1', title: 'Выучить React Native' },
+        { id: '2', title: 'Погладить кота' },
+        { id: '3', title: 'Попить пиво за водокачкой' }
     ]);
+
+    if (!isReady) {
+        return <AppLoading
+            startAsync={loadApplication}
+            onError={(err) => console.log(err)}
+            onFinish={() => setIsReady(true)}
+        />
+    }
 
     const addTodo = (title) => {
         setTodos(prev => [
@@ -75,7 +93,7 @@ export default function App() {
 
     return (
         <View>
-            <Navbar title="Todo App" />
+            <Navbar title="Приложение Дяди Коли" />
             <View style={styles.container}>
                 {content}
             </View>
