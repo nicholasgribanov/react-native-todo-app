@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, Button } from 'react-native'
+import { View, StyleSheet, Button, Dimensions } from 'react-native'
 import {AntDesign, FontAwesome} from '@expo/vector-icons'
 
 import { THEME } from '../theme'
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     button: {
-        width: '40%'
+        width: Dimensions.get('window').width / 3
     },
     title: {
         fontSize: 20
