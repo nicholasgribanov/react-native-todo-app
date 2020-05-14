@@ -47,29 +47,11 @@ export const MainLayout = () => {
     // };
 
 
-    let content = (
-        <MainScreen
-            todos={todos}
-            removeTodo={removeTodo}
-            addTodo={addTodo}
-            onOpen={changeScreen} />
-    )
-    if (todoId) {
-        const selectedTodo = todos.find(todo => todo.id === todoId);
-        content = <TodoScreen
-            onRemove={removeTodo}
-            todo={selectedTodo}
-            goBack={() => changeScreen(null)}
-            onSave={updateTodo}
-        />
-    }
-
-
     return (
         <View>
             <Navbar title="Приложение Дяди Коли" />
             <View style={styles.container}>
-                {content}
+                {todoId ? <TodoScreen /> : <MainScreen />}
             </View>
         </View>
     );
