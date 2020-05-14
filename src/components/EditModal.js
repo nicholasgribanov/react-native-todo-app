@@ -14,6 +14,11 @@ export const EditModal = ({ visible, closeModal, value, saveTitle }) => {
         }
     }
 
+    const closeModalHandler = () =>{
+        setTitle(value)
+        closeModal()
+    }
+
     return (
         <Modal visible={visible} animationType='slide' transparent={false}>
             <View style={styles.wrap}>
@@ -27,7 +32,7 @@ export const EditModal = ({ visible, closeModal, value, saveTitle }) => {
                     maxLength={64}
                 />
                 <View style={styles.buttons}>
-                    <AppButton onPress={closeModal} color={THEME.DANGER_COLOR}>Отменить</AppButton>
+                    <AppButton onPress={closeModalHandler} color={THEME.DANGER_COLOR}>Отменить</AppButton>
                     <AppButton onPress={saveHandler}>Сохранить</AppButton>
                 </View>
             </View>

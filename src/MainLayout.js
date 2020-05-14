@@ -1,51 +1,16 @@
-import React, { useState, useContext } from 'react'
-import { StyleSheet, View, Alert } from 'react-native';
+import React, { useContext } from 'react'
+import { StyleSheet, View } from 'react-native';
 import { Navbar } from './components/Navbar'
 import { THEME } from './theme';
 
 import { MainScreen } from './screens/MainScreen';
 import { TodoScreen } from './screens/TodoScreen';
-import { TodoContext } from './context/todo/todoContext';
 import { ScreenContext } from './context/screen/screenContext';
 
 
 
 export const MainLayout = () => {
-    const { todos, addTodo, removeTodo, updateTodo } = useContext(TodoContext);
-    const { todoId, changeScreen } = useContext(ScreenContext)
-
-    // const addTodo = (title) => {
-    //     setTodos(prev => [
-    //         ...prev,
-    //         {
-    //             id: Date.now().toString(),
-    //             title: title
-    //         }]);
-    // };
-
-    // const removeTodo = id => {
-    //     const todo = todos.find(t => t.id === id)
-    //     Alert.alert(
-    //         "Удаление элемента",
-    //         `Вы действительно хотите удалить "${todo.title}"?`,
-    //         [
-    //             {
-    //                 text: "Отмена",
-    //                 style: "cancel"
-    //             },
-    //             {
-    //                 text: "Удалить",
-    //                 style: 'destructive',
-    //                 onPress: () => {
-    //                     setTodoId(null);
-    //                     setTodos(prev => prev.filter(todo => todo.id !== id));
-    //                 }
-    //             }
-    //         ],
-    //         { cancelable: false }
-    //     );
-    // };
-
+    const { todoId } = useContext(ScreenContext)
 
     return (
         <View>
