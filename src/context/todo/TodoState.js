@@ -21,14 +21,14 @@ export const TodoState = ({ children }) => {
         clearError()
         try {
             const response = await fetch('https://rn-todo-app-50f22.firebaseio.com/todos.json',
-            {
-                method: 'GET',
-                headers: { 'Content-Type': 'application/json' }
-            })
-        const data = await response.json()
-        const todos = Object.keys(data).map(key => ({ ...data[key], id: key }))
-        dispatch({ type: FETCH_TODOS, todos })
-        } catch (e){
+                {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' }
+                })
+            const data = await response.json()
+            const todos = Object.keys(data).map(key => ({ ...data[key], id: key }))
+            dispatch({ type: FETCH_TODOS, todos })
+        } catch (e) {
             console.log(e)
             showError('Ошибка загрузки с сервера')
         } finally {
@@ -69,7 +69,22 @@ export const TodoState = ({ children }) => {
         );
 
     }
-    const updateTodo = (id, title) => dispatch({ type: UPDATE_TODO, id, title })
+    const updateTodo = async (id, title) => {
+        clearError()
+        try {
+            await fetch(`https://rn-todo-app-50f22.firebaseio.com/todos/${id}.json`,
+                {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ title })
+                })
+            dispatch({ type: UPDATE_TODO, id, title })
+        } catch (e) {
+            console.log(e)
+            showError('Ошибка загрузки с сервера')
+        }
+
+    }
 
     const showLoader = () => dispatch({ type: SHOW_LOADER })
 

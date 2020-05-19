@@ -14,8 +14,8 @@ export const TodoScreen = () => {
     const { todos, addTodo, removeTodo, updateTodo } = useContext(TodoContext);
     const { changeScreen, todoId } = useContext(ScreenContext);
     const [modal, setModal] = useState(false)
-    const saveHandler = title => {
-        updateTodo(todo.id, title)
+    const saveHandler = async title => {
+        await updateTodo(todo.id, title)
         setModal(false)
     }
 
