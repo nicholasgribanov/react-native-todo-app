@@ -18,7 +18,9 @@ export const TodoState = ({ children }) => {
 
     const fetchTodos = async () => {
         showLoader()
-        const response = await fetch('https://rn-todo-app-50f22.firebaseio.com/todos.json',
+        clearError()
+        try {
+            const response = await fetch('https://rn-todo-app-50f22.firebaseio.com/todos.json',
             {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' }
@@ -26,7 +28,12 @@ export const TodoState = ({ children }) => {
         const data = await response.json()
         const todos = Object.keys(data).map(key => ({ ...data[key], id: key }))
         dispatch({ type: FETCH_TODOS, todos })
-        hideLoader()
+        } catch (e){
+            console.log(e)
+            showError('Ошибка загрузки с сервера')
+        } finally {
+            hideLoader()
+        }
     }
 
     const addTodo = async title => {
